@@ -1,5 +1,4 @@
 class Enemy():
-    
     def __init__(self, name, hp, damage):
         self.name = name
         self.hp = hp
@@ -9,7 +8,6 @@ class Enemy():
         return self.hp > 0
 
 class Bear(Enemy):
-    
     def __init__(self):
         super().__init__(name='Bear', hp=35, damage = 13)
 

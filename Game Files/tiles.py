@@ -1,4 +1,5 @@
-import items, enemies
+from enemies import Bear, Bandit, Wolf
+from items import Gold, Dagger, ShortSword
 
 class MapTile:
     def __init__(self, x, y):
@@ -13,15 +14,17 @@ class MapTile:
     def modify_player(self, player):
         raise NotImplementedError()
 
-class StartingRoom(MapTile):
+class StartingTile(MapTile):
     def intro_text(self):
         return """
         put starting tile intro here
         """
 
     def modify_player(self, player):
-        # Room has no action on player
+        # Tile has no action on player
         pass
+
+# ---------------------------------------------------------
 
 class LootTile(MapTile):
     def __init__(self, x, y, item):
@@ -33,6 +36,26 @@ class LootTile(MapTile):
 
     def modify_player(self, player):
         self.add_loot(player)
+
+class FindDaggerTile(LootTile):
+    def __init__(self, x, y):
+        super().__init__(x, y, Dagger())
+
+    def intro_text(self):
+        return """
+        You notice something shiny behind a rock.
+        It's a dagger! You pick it up.
+        """
+
+class FindGoldTile(LootTile):
+    def __init__(self, x, y):
+        super().__init__(x, y, Gold())
+
+    def intro_text(self):
+        return """
+        You find some gold pieces scattered about the forest floor.
+        """
+# ---------------------------------------------------------
 
 class EnemyTile(MapTile):
     def __init__(self, x, y, enemy):
@@ -46,7 +69,7 @@ class EnemyTile(MapTile):
 
 class BanditTile(EnemyTile):
     def __init__(self, x, y):
-        super().__init__(x, y, enemies.Bandit())
+        super().__init__(x, y, Bandit())
 
     def intro_text(self):
         if self.enemy.is_alive():
@@ -58,12 +81,33 @@ class BanditTile(EnemyTile):
             A bandit lays dead on the ground.
             '''
 
-class FindDaggerTile(LootTile):
+class BearTile(EnemyTile):
     def __init__(self, x, y):
-        super().__init__(x, y, items.Dagger())
+        super().__init__(x, y, Bear())
 
     def intro_text(self):
-        return """
-        You notice something shiny behind a rock.
-        It's a dagger! You pick it up.
-        """
+        if self.enemy.is_alive():
+            return '''
+            A wild bear has appeared!
+            '''
+        else:
+            return '''
+            A dead bear lays sprawled out on the forest floor.
+            '''
+
+class WolfTile(EnemyTile):
+    def __init__(self, x, y):
+        super().__init__(x, y, Wolf())
+
+    def intro_text(self):
+        if self.enemy.is_alive():
+            return '''
+            A wild wolf has appeared!
+            '''
+        else:
+            return '''
+            A dead wolf lays sprawled out on the forest floor.
+            '''
+
+
+

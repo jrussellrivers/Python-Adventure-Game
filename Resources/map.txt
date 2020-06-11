@@ -1,0 +1,7 @@
+    LeaveForestTile LeaveForestTile
+    BearTile    BanditTile
+	EmptyForestTile FindGoldTile    EmptyForestTile
+		EmptyForestTile	
+		EmptyForestTile	
+WolfTile	EmptyForestTile	StartingTile	
+		FindDaggerTile	
