@@ -1,10 +1,5 @@
-from tiles import BearTile
+from tiles import StartingTile, BearTile, BanditTile, WolfTile, FindDaggerTile, FindGoldTile, EmptyForestTile
 
-world1 = {
-    'Tile1':{
-        "x":0,
-        "y":0,
-        'tile': BearTile()
-    }}
-
+start = StartingTile(0,0)
+dagger_tile = FindDaggerTile(0,-1)
 

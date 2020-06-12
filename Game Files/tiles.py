@@ -15,14 +15,60 @@ class MapTile:
         raise NotImplementedError()
 
 class StartingTile(MapTile):
+    def __init__(self, x, y):
+        self.start_num = 0
+        super().__init__(x,y)
+
     def intro_text(self):
-        return """
-        put starting tile intro here
-        """
+        if self.start_num == 0:
+            self.start_num += 1
+            return """
+        Welcome to the oddly dangerous patch of forest.
+        Moderately valuable treasures await you inside!
+            """
+        else:
+            return '''
+        Welcome back to the start. Time to go another direction!
+            '''
 
     def modify_player(self, player):
         # Tile has no action on player
         pass
+
+    def start_forest(self):
+        start_ran = True
+        while start_ran:
+            start_input = input('Would you like to enter the forest? (Y/N) ')
+            if start_input != 'Y' and start_input != 'N':
+                print('Invalid Input')
+            elif start_input == 'N':
+                print('Goodbye')
+                exit()
+            else:
+                start_ran = False
+
+class EmptyForestTile(MapTile):
+    def intro_text(self):
+        return '''
+        This part of the forest seems remarkably pointless.
+        '''
+    
+    def modify_player(self, player):
+        pass
+
+class LeaveForestTile(MapTile):
+    def intro_text(self):
+        return '''
+        You've made it to the forest exit!
+        Time to leave. Wasn't that thrilling?
+        Goodbye.
+        '''
+    
+    def modify_player(self, player):
+        pass
+
+    def leave(self):
+        exit()
 
 # ---------------------------------------------------------
 
@@ -49,11 +95,21 @@ class FindDaggerTile(LootTile):
 
 class FindGoldTile(LootTile):
     def __init__(self, x, y):
-        super().__init__(x, y, Gold())
+        super().__init__(x, y, Gold(5))
 
     def intro_text(self):
         return """
         You find some gold pieces scattered about the forest floor.
+        """
+
+class FindShortSwordTile(LootTile):
+    def __init__(self, x, y):
+        super().__init__(x, y, ShortSword())
+    
+    def intro_text(self):
+        return """
+        You notice something leaned up against a tree.
+        It's a shortsword! You pick it up.
         """
 # ---------------------------------------------------------
 
@@ -109,5 +165,15 @@ class WolfTile(EnemyTile):
             A dead wolf lays sprawled out on the forest floor.
             '''
 
-
-
+start = StartingTile(0,0)
+dagger_tile = FindDaggerTile(0,-1)
+wolf_tile = WolfTile(-2,0)
+empty1 = EmptyForestTile(-1,0)
+empty2 = EmptyForestTile(0,1)
+gold_tile = FindGoldTile(0,2)
+empty3 = EmptyForestTile(1,2)
+sword_tile = FindShortSwordTile(-1,2)
+bear_tile = BearTile(-1,3)
+bandit_tile = BanditTile(1,4)
+leave_tile1 = LeaveForestTile(-1,4)
+leave_tile2 = LeaveForestTile(1,4)
