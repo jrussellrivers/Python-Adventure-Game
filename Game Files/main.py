@@ -25,27 +25,36 @@ What would you like to do?
         player1.y += 1
         location = (player1.x, player1.y)
         if location not in proper_tiles:
-            print('\nThe forest in that direction is too difficult to traverse.\nYou must find another path.')
+            print('''
+        The forest in that direction is too dsifficult to traverse.
+        You must find another path.
+            ''')
             player1.y -= 1
     elif player_input == '2':
         player1.x += 1
         location = (player1.x, player1.y)
         if location not in proper_tiles:
-            print('\nThe forest in that direction is too difficult to traverse.\nYou must find another path.')
+            print('''
+        The forest in that direction is too dsifficult to traverse.
+        You must find another path.
+            ''')
             player1.x -= 1
     elif player_input == '3':
         player1.y -= 1
         location = (player1.x, player1.y)
         if location not in proper_tiles:
-            print('\nThe forest in that direction is too difficult to traverse.\nYou must find another path.')
+            print('''
+        The forest in that direction is too dsifficult to traverse.
+        You must find another path.
+            ''')
             player1.y += 1
     elif player_input == '4':
         player1.x -= 1
         location = (player1.x, player1.y)
         if location not in proper_tiles:
             print('''
-            The forest in that direction is too dsifficult to traverse.
-            You must find another path.
+        The forest in that direction is too dsifficult to traverse.
+        You must find another path.
             ''')
             player1.x += 1
     elif player_input == '5':
@@ -59,9 +68,6 @@ What would you like to do?
         player1.check_status()
     else:
         print('Invalid Input')
-    
-    print('X: ' + str(player1.x))
-    print('Y: ' + str(player1.y))
 
     tile = True
     while tile:

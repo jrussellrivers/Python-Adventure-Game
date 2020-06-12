@@ -73,7 +73,7 @@ class LeaveForestTile(MapTile):
             if leave_input != 'Y' and leave_input != 'N':
                 print('Invalid Input')
             elif leave_input == 'Y':
-                print('Goodbye')
+                print('\nGoodbye')
                 exit()
             else:
                 leaving = False
@@ -148,15 +148,10 @@ class EnemyTile(MapTile):
         while self.enemy.is_alive() and player.is_alive():
             player.hp = player.hp - self.enemy.damage
             print("Enemy does {0} damage. You have {1} HP remaining.".format(self.enemy.damage, player.hp))
-            # dagger_found = False
-            # sword_found = False
-            # for item in player.inventory:
-            #     if type(item) == Dagger:
-            #         dagger_found = True
-            #     if type(item) == ShortSword:
-            #         sword_found = True
             for item in player.inventory:
-                if item.damage > player.damage:
+                if type(item) == Gold:
+                    pass
+                elif item.damage > player.damage:
                     player.damage = item.damage
             self.enemy.hp = self.enemy.hp - player.damage
             if self.enemy.is_alive():
@@ -179,7 +174,7 @@ class BanditTile(EnemyTile):
             '''
         else:
             return '''
-            A bandit lays dead on the ground.
+        A bandit lays dead on the ground.
             '''
 
 class BearTile(EnemyTile):
@@ -193,7 +188,7 @@ class BearTile(EnemyTile):
             '''
         else:
             return '''
-            A dead bear lays sprawled out on the forest floor.
+        A dead bear lays sprawled out on the forest floor.
             '''
 
 class WolfTile(EnemyTile):
@@ -207,7 +202,7 @@ class WolfTile(EnemyTile):
             '''
         else:
             return '''
-            A dead wolf lays sprawled out on the forest floor.
+        A dead wolf lays sprawled out on the forest floor.
             '''
 
 start = StartingTile(0,0)
