@@ -5,7 +5,7 @@ class Player():
     def __init__(self, name, x, y):
         self.name = name
         self.hp = 100
-        self.damage = 15
+        self.damage = 5
         self.x = x
         self.y = y
         self.inventory = []
@@ -23,8 +23,8 @@ HP: {1}
 Damage: {2}
 '''.format(self.name, self.hp, self.damage))
 
-    # def is_alive(self):
-    #     return self.hp > 0
+    def is_alive(self):
+        return self.hp > 0
     
 # # Everything below this is a test
 

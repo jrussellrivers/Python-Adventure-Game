@@ -43,11 +43,19 @@ What would you like to do?
         player1.x -= 1
         location = (player1.x, player1.y)
         if location not in proper_tiles:
-            print('\nThe forest in that direction is too difficult to traverse.\nYou must find another path.')
+            print('''
+            The forest in that direction is too dsifficult to traverse.
+            You must find another path.
+            ''')
             player1.x += 1
     elif player_input == '5':
         player1.check_inventory()
     elif player_input == '6':
+        for item in player1.inventory:
+                if type(item) == Gold:
+                    pass
+                elif item.damage > player1.damage:
+                    player1.damage = item.damage
         player1.check_status()
     else:
         print('Invalid Input')
@@ -59,11 +67,8 @@ What would you like to do?
     while tile:
         if player1.x == start.x and player1.y == start.y:
             print(start.intro_text())
-        tile = False
-    
-    tile = True
-    while tile:
-        if player1.x == dagger_tile.x and player1.y == dagger_tile.y:
+            tile = False
+        elif player1.x == dagger_tile.x and player1.y == dagger_tile.y:
             found = False
             for item in player1.inventory:
                 if type(item) == Dagger:
@@ -73,14 +78,56 @@ What would you like to do?
                 dagger_tile.modify_player(player1)
             else:
                 print(dagger_tile.return_text())
-                
-        tile = False
-
-    tile = True
-    while tile:
-        if player1.x == wolf_tile.x and player1.y == wolf_tile.y:
+            tile = False
+        elif player1.x == wolf_tile.x and player1.y == wolf_tile.y:
             print(wolf_tile.intro_text())
             wolf_tile.modify_player(player1)
+            tile = False
+        elif player1.x == gold_tile.x and player1.y == gold_tile.y:
+            found = False
+            for item in player1.inventory:
+                if type(item) == Gold:
+                    found = True
+            if not found:
+                print(gold_tile.intro_text())
+                gold_tile.modify_player(player1)
+            else:
+                print(gold_tile.return_text())
+            tile = False
+        elif player1.x == sword_tile.x and player1.y == sword_tile.y:
+            found = False
+            for item in player1.inventory:
+                if type(item) == ShortSword:
+                    found = True
+            if not found:
+                print(sword_tile.intro_text())
+                sword_tile.modify_player(player1)
+            else:
+                print(sword_tile.return_text())
+            tile = False
+        elif player1.x == bear_tile.x and player1.y == bear_tile.y:
+            print(bear_tile.intro_text())
+            bear_tile.modify_player(player1)
+            tile = False
+        elif player1.x == bandit_tile.x and player1.y == bandit_tile.y:
+            print(bandit_tile.intro_text())
+            bandit_tile.modify_player(player1)
+            tile = False
+        elif player1.x == empty1.x and player1.y == empty1.y:
+            print(empty1.intro_text())
+            tile = False
+        elif player1.x == empty2.x and player1.y == empty2.y:
+            print(empty2.intro_text())
+            tile = False
+        elif player1.x == empty3.x and player1.y == empty3.y:
+            print(empty3.intro_text())
+            tile = False
+        elif player1.x == leave_tile1.x and player1.y == leave_tile1.y:
+            print(leave_tile1.intro_text())
+            leave_tile1.leave()
+        elif player1.x == leave_tile2.x and player1.y == leave_tile2.y:
+            print(leave_tile2.intro_text())
+            leave_tile2.leave()
+        else:
+            pass
         tile = False
-
-    print(player1.inventory)

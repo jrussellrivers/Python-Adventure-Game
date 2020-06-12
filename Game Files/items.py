@@ -36,7 +36,7 @@ class ShortSword(Weapon):
             name = 'Short Sword',
             description = 'A sword that is short. Stick \'em with the pointy end',
             value = 20,
-            damage = 10
+            damage = 20
         )
 
 class Dagger(Weapon):
@@ -45,4 +45,4 @@ class Dagger(Weapon):
             name = "Dagger",
             description = "A small dagger with some rust. Careful where you point it.",
             value = 10,
-            damage = 5)
+            damage = 13)

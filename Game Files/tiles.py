@@ -61,14 +61,22 @@ class LeaveForestTile(MapTile):
         return '''
         You've made it to the forest exit!
         Time to leave. Wasn't that thrilling?
-        Goodbye.
         '''
     
     def modify_player(self, player):
         pass
 
     def leave(self):
-        exit()
+        leaving = True
+        while leaving:
+            leave_input = input('Would you like to leave the forest? (Y/N) ')
+            if leave_input != 'Y' and leave_input != 'N':
+                print('Invalid Input')
+            elif leave_input == 'Y':
+                print('Goodbye')
+                exit()
+            else:
+                leaving = False
 
 # ---------------------------------------------------------
 
@@ -136,12 +144,29 @@ class EnemyTile(MapTile):
         super().__init__(x,y)
     
     def modify_player(self, player):
-        if self.enemy.is_alive():
+        
+        while self.enemy.is_alive() and player.is_alive():
             player.hp = player.hp - self.enemy.damage
             print("Enemy does {0} damage. You have {1} HP remaining.".format(self.enemy.damage, player.hp))
-        # if player.is_alive():
-        #     self.hp = self.hp - player.damage
-        #     print("Player does {0} damage. Enemy has {1} HP remaining.".format(player.damage, self.hp))
+            # dagger_found = False
+            # sword_found = False
+            # for item in player.inventory:
+            #     if type(item) == Dagger:
+            #         dagger_found = True
+            #     if type(item) == ShortSword:
+            #         sword_found = True
+            for item in player.inventory:
+                if item.damage > player.damage:
+                    player.damage = item.damage
+            self.enemy.hp = self.enemy.hp - player.damage
+            if self.enemy.is_alive():
+                print("Player does {0} damage. Enemy has {1} HP remaining.\n".format(player.damage, self.enemy.hp))
+            else:
+                print("Player does {0} damage. Enemy has been slain.\n".format(player.damage))
+        if not player.is_alive():
+            print('You have died')
+            print('Goodbye')
+            exit()
 
 class BanditTile(EnemyTile):
     def __init__(self, x, y):
@@ -194,7 +219,7 @@ gold_tile = FindGoldTile(0,2)
 empty3 = EmptyForestTile(1,2)
 sword_tile = FindShortSwordTile(-1,2)
 bear_tile = BearTile(-1,3)
-bandit_tile = BanditTile(1,4)
+bandit_tile = BanditTile(1,3)
 leave_tile1 = LeaveForestTile(-1,4)
 leave_tile2 = LeaveForestTile(1,4)
 

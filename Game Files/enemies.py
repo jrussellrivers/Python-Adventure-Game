@@ -17,4 +17,4 @@ class Bandit(Enemy):
 
 class Wolf(Enemy):
     def __init__(self):
-        super().__init__(name='Wolf', hp=15, damage = 10)
+        super().__init__(name='Wolf', hp=50, damage = 10)
