@@ -8,7 +8,7 @@ class Player():
         self.damage = 15
         self.x = x
         self.y = y
-        self.inventory = [Gold(5), Dagger()]
+        self.inventory = []
 
     def check_inventory(self):
         print('')
@@ -22,6 +22,9 @@ class Player():
 HP: {1}
 Damage: {2}
 '''.format(self.name, self.hp, self.damage))
+
+    # def is_alive(self):
+    #     return self.hp > 0
     
 # # Everything below this is a test
 

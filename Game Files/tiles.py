@@ -92,6 +92,12 @@ class FindDaggerTile(LootTile):
         You notice something shiny behind a rock.
         It's a dagger! You pick it up.
         """
+    
+    def return_text(self):
+        return """
+        There's an imprint in the grass where a dagger used to be.
+        Nothing else is of interest here.
+        """
 
 class FindGoldTile(LootTile):
     def __init__(self, x, y):
@@ -100,6 +106,12 @@ class FindGoldTile(LootTile):
     def intro_text(self):
         return """
         You find some gold pieces scattered about the forest floor.
+        """
+    
+    def return_text(self):
+        return """
+        Sadly no one else has left their precious currency here.
+        Go find gold in some other forest.
         """
 
 class FindShortSwordTile(LootTile):
@@ -110,6 +122,11 @@ class FindShortSwordTile(LootTile):
         return """
         You notice something leaned up against a tree.
         It's a shortsword! You pick it up.
+        """
+    def return_text(self):
+        return """
+        There is no more carlelessly placed weaponry to find.
+        Carry on now.
         """
 # ---------------------------------------------------------
 
@@ -122,6 +139,9 @@ class EnemyTile(MapTile):
         if self.enemy.is_alive():
             player.hp = player.hp - self.enemy.damage
             print("Enemy does {0} damage. You have {1} HP remaining.".format(self.enemy.damage, player.hp))
+        # if player.is_alive():
+        #     self.hp = self.hp - player.damage
+        #     print("Player does {0} damage. Enemy has {1} HP remaining.".format(player.damage, self.hp))
 
 class BanditTile(EnemyTile):
     def __init__(self, x, y):
@@ -177,3 +197,19 @@ bear_tile = BearTile(-1,3)
 bandit_tile = BanditTile(1,4)
 leave_tile1 = LeaveForestTile(-1,4)
 leave_tile2 = LeaveForestTile(1,4)
+
+
+proper_tiles = [
+    (0,0), 
+    (0,-1),
+    (-1,0),
+    (-2,0),
+    (0,1),
+    (0,2),
+    (1,2),
+    (1,3),
+    (1,4),
+    (-1,2),
+    (-1,3),
+    (-1,4)
+    ]

@@ -1,5 +1,7 @@
 # Gonna make a class for some items
 
+# from player import Player
+
 class Item():
     
     def __init__(self, name, description, value):
@@ -9,6 +11,8 @@ class Item():
     
     def __str__(self):
         return "{0}\n=====\n{1}\nValue: {2}\n".format(self.name, self.description, self.value)
+
+    # def in_inventory(self):
 
 class Gold(Item):
     def __init__(self, amt):
@@ -24,7 +28,7 @@ class Weapon(Item):
         super().__init__(name, description, value)
     
     def __str__(self):
-        return "{0}\n=====\n{1}\nValue: {2}\nDamage: {3}".format(self.name, self.description, self.value, self.damage)
+        return "{0}\n=====\n{1}\nValue: {2}\nDamage: {3}\n".format(self.name, self.description, self.value, self.damage)
 
 class ShortSword(Weapon):
     def __init__(self):
