@@ -53,7 +53,7 @@ What would you like to do?
         location = (player1.x, player1.y)
         if location not in proper_tiles:
             print('''
-        The forest in that direction is too dsifficult to traverse.
+        The forest in that direction is too difficult to traverse.
         You must find another path.
             ''')
             player1.x += 1
