@@ -1,4 +1,4 @@
-# Python Advnture Gam
+# Python Advnture Game
 Python project for DigitalCrafts
 
 ## Assignment
